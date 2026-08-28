@@ -1,0 +1,28 @@
+Project title : URL Shortener
+
+Objective : Cover concepts like : APIs , databases , caching , scalability , load balancing and reliability
+
+Core Idea : Long URL -> Short code -> Redirect to original URL 
+
+Phase 1 -> Understand the problem statement
+Functional requirements :
+-> Shorten a long URL
+-> Redirect short URL -> Original URL
+->Optional : Click count / analytics
+
+Non functional requirements:
+-> Concurrency
+-> Fast redirects(Low latency)
+-> Scalable to million of URLs
+-> High Availability
+
+Phase 2 : Basic Architecture(SIngle Machine MVP)
+Components : 
+1 Client(Browser/Postman/Frontend)
+2 Backend API(Node/Java/Python)
+3 Database (MySQL/MongoDB)
+
+APIs
+POST /ShortenGET 
+GET /{shortcode}
+
