@@ -26,3 +26,41 @@ APIs
 POST /ShortenGET 
 GET /{shortcode}
 
+ What are we going to implement ??
+
+ 1 Rest APIs 
+ 2 Hash/Base62
+ Store mapping into databases
+ Redirect logic
+
+ Phase 3 - Database design 
+ Table : 
+ id(Primary key)
+ original_url
+ short_code
+ created_at
+ expires_at
+ click_count
+
+Phase 4 : Short code generation strategy
+Option A : Hashing
+Option B : Auto increment + Base62
+
+Phase 5 : - Add cache (Performance layer)
+-Introduce redis
+
+Phase 6 : Horizontal scaling 
+What if traffic explodes ????
+Add : Load Balancer , Multiple backend servers 
+
+Phase 7 : High Availability + Reliability
+Add : - DB Replication
+- Redis Replication
+- Health checks
+
+Steps to follow:
+1. MVP - APIs + DB
+2. Caching - Performance
+3. Scaling - Load balancing
+4. Replication - Availability
+5. Kafka - Async Systems
