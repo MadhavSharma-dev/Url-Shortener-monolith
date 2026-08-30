@@ -1,3 +1,24 @@
+REST (Representational State Transfer) is an architectural style for designing APIs where resources (data) are accessed and manipulated using standard HTTP methods, and each request from client to server contains all the information needed to process it.
+
+A REST API is simply an API that follows REST principles.
+
+Key Principles of REST (Interviewers Love This)
+
+1. Client-Server Architecture
+
+Frontend (client) and backend (server) are separate and independent — they communicate only through requests/responses.
+
+2. Statelessness
+
+Every request from the client must contain all information needed to process it. Server doesn't store any client session state between requests.
+
+3. Resource-Based (Everything is a "Resource")
+
+Resources (like users, orders, products) are identified by URLs (URIs).
+
+A REST API is a way of designing web services where resources are accessed via URLs using standard HTTP methods like GET, POST, PUT, DELETE, and every request is stateless, meaning the server doesn't remember previous requests.
+
+
 Project title : URL Shortener
 
 Objective : Cover concepts like : APIs , databases , caching , scalability , load balancing and reliability
