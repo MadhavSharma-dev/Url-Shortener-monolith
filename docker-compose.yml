@@ -1,0 +1,62 @@
+version: "3.9"
+
+# Shared volume so url-service and redirect-service access the same SQLite DB
+volumes:
+    url_data:
+    analytics_data:
+
+services:
+
+    # ── API Gateway ──────────────────────────────────────────────────────────
+    gateway:
+        build: ./gateway
+        ports:
+            - "8080:8080"
+        environment:
+            PORT: 8080
+            URL_SERVICE_URL: http://url-service:3001
+            REDIRECT_SERVICE_URL: http://redirect-service:3002
+            ANALYTICS_SERVICE_URL: http://analytics-service:3003
+        depends_on:
+            - url-service
+            - redirect-service
+            - analytics-service
+        restart: unless-stopped
+
+    # ── URL Service ──────────────────────────────────────────────────────────
+    url-service:
+        build: ./url-service
+        ports:
+            - "3001:3001"
+        environment:
+            PORT: 3001
+            DB_PATH: /data/urls.db
+            BASE_URL: http://localhost:8080
+        volumes:
+            - url_data:/data
+        restart: unless-stopped
+
+    # ── Redirect Service ─────────────────────────────────────────────────────
+    redirect-service:
+        build: ./redirect-service
+        ports:
+            - "3002:3002"
+        environment:
+            PORT: 3002
+            DB_PATH: /data/urls.db
+            ANALYTICS_SERVICE_URL: http://analytics-service:3003
+        volumes:
+            - url_data:/data      # Same volume as url-service (shared SQLite)
+        restart: unless-stopped
+
+    # ── Analytics Service ─────────────────────────────────────────────────────
+    analytics-service:
+        build: ./analytics-service
+        ports:
+            - "3003:3003"
+        environment:
+            PORT: 3003
+            DB_PATH: /data/analytics.db
+        volumes:
+            - analytics_data:/data
+        restart: unless-stopped

@@ -1,8 +1,13 @@
+// Only Routing.. No logic
+
 const express = require("express");
 const router = express.Router();
-const { shortenUrl, redirectUrl } = require("../controllers/url.controller");
+const controller = require('../controllers/url.controller');
 
-router.post("/shorten", shortenUrl);
-router.get("/:code", redirectUrl);
+// Create Short URL
+router.post("/shorten", controller.shortenUrl);
+
+// Redirect
+router.get("/:code", controller.redirectUrl);
 
 module.exports = router;

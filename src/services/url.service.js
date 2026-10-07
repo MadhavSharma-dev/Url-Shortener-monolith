@@ -12,12 +12,12 @@ const {client} = require("../config/redis");
 
 exports.createShortUrl = async(originalUrl) => {
     if(!originalUrl) {
-        throw new console.error(("Original URL is required..."));
+        throw new Error("Original URL is required...")
         
     }
     const id = await respository.create(originalUrl);
     console.log("ID from original URL:",id);
-    const shortCode = base62.encode(4564564);
+    const shortCode = base62.encode(parseInt(id.toString().slice(-8), 16));
     console.log("Short code generated:",shortCode);
     await respository.updatedCode(id, shortCode);
     return {

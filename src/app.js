@@ -16,7 +16,7 @@ app.use(express.json())
 app.use("/api/url", urlRoutes);
 
 // Error Handler
-const errorMiddleware = require("./middlewares/error.middleware");
+const errorMiddleware = require("./middlewares/errormiddleware");
 app.use(errorMiddleware);
 
 module.exports = app;

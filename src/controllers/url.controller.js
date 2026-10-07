@@ -20,8 +20,8 @@ exports.shortenUrl = async (req, res, next) => {
 // GET /:code
 exports.redirectUrl = async(req, res, next) => {
     try {
-        const original = await
-        urlService.getOriginalUrl(req.params.code);
+        const original = await urlService.getOriginalUrl(req.params.code);
+        res.redirect(original);
     } catch (error) {
         next(error)
     }
